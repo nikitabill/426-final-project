@@ -1,5 +1,4 @@
-# 426-final-project
-Nikita's Final 426 Project
+# Nikita's Final 426 Project
 
 Hi! This website hosted on Netlify has my final COMP 426 project. Here's the hyperlink: https://love-is-in-426.netlify.app/
 
