@@ -1,5 +1,15 @@
 // Importing necessary JS libraries like React
 import React, { useState } from 'react'; 
+const { authUser } = require('./authUser').default
+const { users } = require('./data')
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
+
+// Connecting my database to this file
+mongoose.connect('https://github.com/nikitabill/426-final-project/blob/main/data.js', { useNewUrlParser : true } )
+const db = mongoose.connectiondb.on('open', () => console.log('Connected to database!'))
+app.use(express.json())
 
 // Vars needed for user login form
 const name = document.getElementById('name')
@@ -79,26 +89,6 @@ login_form.addEventListener('submit', (e) => {
 //function authenticateUserCheck()
 
 // If user 
-
-// Starting users 
-var objUsers = [
-    {
-        name: "kmp", 
-        password: "is_high_on_life"
-    }, 
-    {
-        name: "chris", 
-        password: "lovesReactALotAndIsAKing"
-    }, 
-    { 
-        name: "nikita", 
-        password: "would love an A on this project - pls?"
-    }, 
-    {
-        name: 'milen', 
-        password: "is_a_king_too_and_we_want_more_users"
-    }
-]
 
 // Create User Account  
 register_form.addEventListener('submitCreateAccount', (e) => {
