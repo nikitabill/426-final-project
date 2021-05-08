@@ -1,15 +1,15 @@
 // Importing necessary JS libraries like React
 import React, { useState } from 'react'; 
-const { authUser } = require('./authUser').default
-const { users } = require('./data')
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
+//const { authUser } = require('./authUser').default
+//const { users } = require('./data')
+// const express = require('express')
+// const app = express()
+// const mongoose = require('mongoose')
 
 // Connecting my database to this file
-mongoose.connect('https://github.com/nikitabill/426-final-project/blob/main/data.js', { useNewUrlParser : true } )
-const db = mongoose.connectiondb.on('open', () => console.log('Connected to database!'))
-app.use(express.json())
+// mongoose.connect('https://github.com/nikitabill/426-final-project/blob/main/data.js', { useNewUrlParser : true } )
+// const db = mongoose.connectiondb.on('open', () => console.log('Connected to database!'))
+// app.use(express.json())
 
 // Vars needed for user login form
 const name = document.getElementById('name')
@@ -33,24 +33,27 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
 
     console.log("dom event listener created");
 
-    document.getElementById("#login").addEventListener("click", (e) => { // toggle display to c
+    document.getElementById("login").addEventListener("click", (e) => { // toggle display createAccount form
         //e.preventDefault(); 
         //loginForm.classList.add("form-hidden"); 
-        //e.style.display = 'hidden'; 
-        document.getElementById("#login").style.display = "none";
-        createAccountForm.classList.remove("form-hidden");
-    }); 
-
-    document.querySelector("#createAccount").addEventListener("click", (e) => {
-        e.preventDefault(); 
-        createAccountForm.classList.add("form-hidden");
-        loginForm.classList.remove("form-hidden"); 
+        //e.style.display = "none"; 
+        console.log("login clicked"); 
+        document.getElementById("login").style.display = "none";
+        //createAccountForm.classList.remove("form-hidden");
     }); 
 
     console.log("this code has run"); 
-
-
 })
+
+document.addEventListener("DOMContentLoaded", () => { // our default page will be the register user page
+    document.getElementById("createAccount").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        console.log("createAccount clicked"); 
+        //createAccountForm.classList.add("form-hidden");
+        document.getElementById("createAccount").style.display = "none";
+    }); 
+})
+
 
 // User login
 login_form.addEventListener('submit', (e) => {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the ultimate game!</title>
     <script defer src="script.js"></script>
-    <script  src="loveCalculator.js"></script>
+    <!-- <script  src="loveCalculator.js"></script> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="supp.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
@@ -15,8 +15,6 @@
     <section class="hero is-info is-large">
         <!-- ERROR MESSAGE -->
         <div id="error"></div>
-        
-
 
         <!-- BULMA HERO HEAD (will stick at the top) -->
         <div class="hero-head">
@@ -61,10 +59,10 @@
 
 
         <!-- 2 FORMS: LOGIN AND REGISTER -->
-        <div class="columns">
+          <!--<div class="columns">-->
 
             <!-- GENERAL LOGIN FORM -->
-            <div class="column">
+             <!--<div class="column">-->
                 <form id="login" action="/" method="GET">  
                     <section class="section is-medium">
                         <div class="container has-text-centered">
@@ -99,10 +97,10 @@
                         </div>
                     </section>
                 </form>
-            </div>
+             <!-- </div>-->
 
             <!-- REGISTER FORM -->
-            <div class="column">
+             <!-- <div class="column"> -->
                 <form id="createAccount" action="/" method="GET">                
                     <section class="section is-medium">
                         <div class="container has-text-centered">
@@ -127,7 +125,6 @@
                                 <input id="password1" name="password1" type="password" placeholder="Password" required> 
                             </div>
 
-
                             <div>
                             <button type="submitCreateAccount">Continue</button>  <!-- corresponds to a createAccount() function in script.js -->
                             </div>
@@ -140,10 +137,10 @@
                         </div>
                     </section>
                 </form>
-            </div>
+             <!-- </div> -->
 
 
-        </div>
+         <!--</div>-->
 
         <!-- LOVE CALCULATOR GAME -->
         <div class="column">
@@ -169,7 +166,7 @@
 
                         <div>
                             <label for="guess"></label>
-                            <input id="guess" name="guess" type="text" placeholder="Enter your guess 1-100 of ~chemistry" required> 
+                            <input id="guess" name="guess" type="text" placeholder="Guess 1-100 ~chemistry" required> 
                         </div>
 
                         <div>
