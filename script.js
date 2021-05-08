@@ -33,9 +33,11 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
 
     console.log("dom event listener created");
 
-    document.querySelector("#login").addEventListener("click", (e) => { // toggle display to c
-        e.preventDefault(); 
-        loginForm.classList.add("form-hidden"); 
+    document.getElementById("#login").addEventListener("click", (e) => { // toggle display to c
+        //e.preventDefault(); 
+        //loginForm.classList.add("form-hidden"); 
+        //e.style.display = 'hidden'; 
+        document.getElementById("#login").style.display = "none";
         createAccountForm.classList.remove("form-hidden");
     }); 
 
