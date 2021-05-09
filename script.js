@@ -212,6 +212,7 @@ function calcLove(namea, nameb) {
 
     axios.request(options).then(function (response) {
         console.log(response.data);
+        console.log(response.data.percentage);
         return response.data.percentage; 
     }).catch(function (error) {
         console.error(error);
