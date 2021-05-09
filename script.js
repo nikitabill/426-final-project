@@ -1,5 +1,5 @@
 // Importing necessary JS libraries like React
-import React, { useState } from 'react'; 
+//import React, { useState } from 'react'; 
 //const { authUser } = require('./authUser').default
 //const { users } = require('./data')
 // const express = require('express')
@@ -21,37 +21,54 @@ const name1 = document.getElementById('name1')
 const password1 = document.getElementById('password1')
 const register_form = document.getElementById('createAccount')
 
+// Vars needed for loveCalc
+const loveCalc_form = document.getElementById('loveCalc')
+
 // Var(s) for errors
 const errorElement = document.getElementById('error')
 
-//   -This is a filler beteen values we initialize and our event listeners-   //
+//   -This is a filler between values we initialize and our event listeners-   //
 
 // Setting up our document
 document.addEventListener("DOMContentLoaded", () => { // our default page will be the register user page
-    const loginForm = document.querySelector("#login"); 
-    const createAccountForm = document.querySelector("#createAccount"); 
-
     console.log("dom event listener created");
 
+    // Handles Login button press; pulls up Login form; makes AccRegistration form disappear
     document.getElementById("login").addEventListener("click", (e) => { // toggle display createAccount form
-        //e.preventDefault(); 
-        //loginForm.classList.add("form-hidden"); 
-        //e.style.display = "none"; 
+        e.preventDefault(); 
+        login_form.classList.add("form-hidden"); 
+        register_form.classList.remove("form-hidden");
+
         console.log("login clicked"); 
-        document.getElementById("login").style.display = "none";
-        //createAccountForm.classList.remove("form-hidden");
     }); 
 
     console.log("this code has run"); 
+
+    // Handles createAccount button press; pulls up AccRegistration form; makes Login form disappear
+    document.getElementById("btn_createAcc").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        register_form.classList.remove("form-hidden");
+        login_form.classList.add("form-hidden"); 
+
+        console.log("createAccount clicked"); 
+    }); 
+
+    // Handles game instance button press
+    document.getElementById("btn_game").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        register_form.classList.add("form-hidden");
+        login_form.classList.add("form-hidden"); 
+        loveCalc_form.classList.remove("form-hidden"); 
+
+        console.log("createAccount clicked"); 
+    }); 
+
+
+
 })
 
 document.addEventListener("DOMContentLoaded", () => { // our default page will be the register user page
-    document.getElementById("createAccount").addEventListener("click", (e) => {
-        e.preventDefault(); 
-        console.log("createAccount clicked"); 
-        //createAccountForm.classList.add("form-hidden");
-        document.getElementById("createAccount").style.display = "none";
-    }); 
+    
 })
 
 
@@ -136,3 +153,73 @@ register_form.addEventListener('submitCreateAccount', (e) => {
 })
 
 // Create a user with POST
+
+
+var unirest = require("unirest");
+var name_1 = document.getElementById("name_1"); 
+var name_2 = document.getElementById("name_2"); 
+var guess = document.getElementById("guess"); 
+var score = document.getElementById("score"); 
+
+
+// This JS file helps to assess the score for who gets 
+window.addEventListener("beforeunload", "click", (e) => {
+	document.getElementById("assess_match").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        console.log("assess_match clicked"); 
+
+		// calc love calculator val
+		var apiRes = calcLove(name_1, name_2); 
+
+		// find diff between input 
+		var diff = abs( document.getElementById("guess") - apiRes ); 
+
+        score += ( 100 - diff );
+
+
+    }); 
+}) 
+	
+//         BREAK IN CODE: BEGINNING OF LOVECALC.JS GAME           //
+
+// For doing the chemistry calculations
+function calcLove(name1, name2) {
+	var req = unirest("GET", "https://love-calculator.p.rapidapi.com/getPercentage");
+
+	req.query({
+		"fname": name1,
+		"sname": name2
+	});
+
+	req.headers({
+		"x-rapidapi-key": "739b9df380msh1816be226e8fc1cp12c848jsn6d84e15d23d4",
+		"x-rapidapi-host": "love-calculator.p.rapidapi.com",
+		"useQueryString": true
+	});
+
+
+	req.end(function (res) {
+		if (res.error) throw new Error(res.error);
+
+		console.log(res.body);
+		console.log(res.body.percentage);
+
+	});
+
+	return res.body.percentage; 
+
+	// Update the score to be the difference between the expected chemistry 
+	// and the chemistry that the user "guess"ed (input)
+
+	// Users should shoot for the least distance between their guess of chemistry 
+	// and that that's provided by the API
+	
+	// Points will be added to a user's score (up to 5 rounds) on a scale from 0-100 
+	// (100 being the distance of the user's ~chemistry~ guess to the value the API provided)
+
+	// A game will be over once the user has played the game 5 times
+		// The highest score a user can get is 500 (exact chemistry guesses each time)
+		// The lowest possible score will be 0 (guessing 0 chemistry and it's 100 each time, for eg)
+
+
+}

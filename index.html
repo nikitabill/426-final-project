@@ -36,7 +36,7 @@
                       Login
                     </a>
                     <span class="navbar-item">
-                        <a class="button is-info" href="loveCalc.html">
+                        <a class="button is-info" id="btn_game" href="index.html"> <!-- Login and createAcc forms become hidden; loveCalc form removes class "form-hidden"; Login become inactive; Game becomes "is-active"-->
                             <span>Game</span>
                         </a>
                       </span>
@@ -64,10 +64,10 @@
 
 
         <!-- 2 FORMS: LOGIN AND REGISTER -->
-        <div class="columns">
+         <!--<div class="columns"> -->
 
             <!-- GENERAL LOGIN FORM -->
-             <div class="column">
+             <!-- <div class="column"> -->
                 <form id="login" action="/" method="GET">  
                     <section class="section is-medium">
                         <div class="container has-text-centered">
@@ -95,18 +95,18 @@
 
                             <p class="has-text-weight-light">
                                 <div>
-                                    <a id="createAccount" href="./">Don't have an account? Create one here</a>  <!-- add createAccount() helper function on script.js -->
+                                    <a id="btn_createAcc" href="./">Don't have an account? Create one here</a>  <!-- add createAccount() helper function on script.js -->
                                 </div>
                             </p>
 
                         </div>
                     </section>
                 </form>
-             </div>
+              <!-- </div> -->
 
             <!-- REGISTER FORM -->
-             <div class="column"> 
-                <form id="createAccount" action="/" method="GET">                
+             <!-- <div  class="column"> -->
+                <form id="createAccount" class="form-hidden" action="/" method="GET">                
                     <section class="section is-medium">
                         <div class="container has-text-centered">
                             <p>
@@ -142,12 +142,62 @@
                         </div>
                     </section>
                 </form>
-            </div>
+             <!-- </div> -->
 
 
-         </div>
+         <!-- </div>-->
 
-        
+        <!-- LOVE GAME -->
+        <div>
+            <form id="loveCalc" class="form-hidden" action="/" method="GET">  
+                <section class="section is-medium">
+                    <div class="container has-text-centered">
+                
+                        <p>
+                            <div>
+                                <h1 class="title is-2 is-spaced">Who can find ~love~ in the quarantine??</h1>
+                            </div>
+                        </p>
+
+                        <div>
+                            <label for="name_1"></label>
+                            <input id="name_1" name="name_1" type="text" placeholder="kmp" required> 
+                        </div>
+
+                        <div>
+                            <label for="name_2"></label>
+                            <input id="name_2" name="name_2" type="text" placeholder="chris" required> 
+                        </div>
+
+                        <div>
+                            <label for="guess"></label>
+                            <input id="guess" name="guess" type="text" placeholder="Guess 1-100 ~chemistry" required> 
+                        </div>
+
+                        <div>
+                            <button type="assess_match" action="/" href="loveCalc.html">Calculate match!</button>  
+                        </div>
+
+                        <p class="has-text-weight-light">
+                          <div>
+                            <p>
+                              <label type="text">Your current score is: </label>
+                              <text id="score">0</text>  <!-- add helper function on loveCalc.js -->
+                            </p>
+                              <p>
+                                <label type="text">Rounds left out of 5: </label>
+                                <text id="round_num">5</text>
+                              </p>
+                          </div>
+                      </p>
+
+              
+
+                    </div>
+                </section>
+            </form>
+        </div>
+
 
 
 

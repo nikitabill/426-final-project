@@ -1,19 +1,32 @@
 var unirest = require("unirest");
+var name_1 = document.getElementById("name_1"); 
+var name_2 = document.getElementById("name_2"); 
+var guess = document.getElementById("guess"); 
+var score = document.getElementById("score"); 
+
 
 // This JS file helps to assess the score for who gets 
-document.addEventListener("DOMContentLoaded", () => { // our default page will be the register user page
-    
-	
-	document.getElementById("assess").addEventListener("click", (e) => {
+window.addEventListener("beforeunload", "click", (e) => {
+	document.getElementById("assess_match").addEventListener("click", (e) => {
         e.preventDefault(); 
-        console.log("createAccount clicked"); 
-        //createAccountForm.classList.add("form-hidden");
-        document.getElementById("createAccount").style.display = "none";
+        console.log("assess_match clicked"); 
+
+		// calc love calculator val
+		var apiRes = calcLove(name_1, name_2); 
+
+		// find diff between input 
+		var diff = abs( document.getElementById("guess") - apiRes ); 
+
+        score += ( 100 - diff );
+
+
     }); 
-})
+}) 
+	
+
 
 // For doing the chemistry calculations
-function calcLove(name1, name2, guess) {
+function calcLove(name1, name2) {
 	var req = unirest("GET", "https://love-calculator.p.rapidapi.com/getPercentage");
 
 	req.query({
@@ -32,7 +45,11 @@ function calcLove(name1, name2, guess) {
 		if (res.error) throw new Error(res.error);
 
 		console.log(res.body);
+		console.log(res.body.percentage);
+
 	});
+
+	return res.body.percentage; 
 
 	// Update the score to be the difference between the expected chemistry 
 	// and the chemistry that the user "guess"ed (input)

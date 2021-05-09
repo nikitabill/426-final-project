@@ -13,8 +13,6 @@
     <section class="hero is-info is-large">
         <!-- ERROR MESSAGE -->
         <div id="error"></div>
-        
-
 
         <!-- BULMA HERO HEAD (will stick at the top) -->
         <div class="hero-head">
@@ -94,12 +92,19 @@
                             </div>
 
                             <div>
-                            <button type="assess_match">Calculate match!</button>  
+                                <button type="assess_match" action="/" href="loveCalc.html">Calculate match!</button>  
                             </div>
 
                             <p class="has-text-weight-light">
                               <div>
-                                  <a id="score" href="./">Your current score is: </a>  <!-- add helper function on loveCalc.js -->
+                                <p>
+                                  <label type="text">Your current score is: </label>
+                                  <text id="score">0</text>  <!-- add helper function on loveCalc.js -->
+                                </p>
+                                  <p>
+                                    <label type="text">Rounds left out of 5: </label>
+                                    <text id="round_num">5</text>
+                                  </p>
                               </div>
                           </p>
 
