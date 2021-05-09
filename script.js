@@ -24,7 +24,7 @@ const register_form = document.getElementById('createAccount')
 // Vars needed for loveCalc
 const loveCalc_form = document.getElementById('loveCalc')
 //var unirest = require("unirest"); // installed browserify for this to work AND unirest
-//import axios from "/node_modules/axios/dist/axios.js";
+//import axios from "../node_modules/axios";
 var name_1 = document.getElementById("name_1"); 
 var name_2 = document.getElementById("name_2"); 
 var guess = document.getElementById("guess"); 

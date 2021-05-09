@@ -18,8 +18,6 @@ window.addEventListener("beforeunload", "click", (e) => {
 		var diff = abs( document.getElementById("guess") - apiRes ); 
 
         score += ( 100 - diff );
-
-
     }); 
 }) 
 	
