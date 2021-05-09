@@ -9,10 +9,14 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "axios": "^0.21.1",
     "browser-sync": "^2.26.14",
+    "browserify": "^17.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.7",
-    "netlify-identity-widget": "^1.9.1"
+    "netlify-identity-widget": "^1.9.1",
+    "requirejs": "^2.3.6",
+    "unirest": "^0.6.0"
   },
   "devDependencies": {
     "dotenv": "^9.0.0",

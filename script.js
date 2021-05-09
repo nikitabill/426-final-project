@@ -23,6 +23,12 @@ const register_form = document.getElementById('createAccount')
 
 // Vars needed for loveCalc
 const loveCalc_form = document.getElementById('loveCalc')
+//var unirest = require("unirest"); // installed browserify for this to work AND unirest
+//import axios from "/node_modules/axios/dist/axios.js";
+var name_1 = document.getElementById("name_1"); 
+var name_2 = document.getElementById("name_2"); 
+var guess = document.getElementById("guess"); 
+var score = document.getElementById("score"); 
 
 // Var(s) for errors
 const errorElement = document.getElementById('error')
@@ -59,8 +65,25 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.remove("form-hidden"); 
+        // document.getElementById('btn_loginOnBanner').classList.remove("navbar-item is-active"); 
+        // document.getElementById('btn_loginOnBanner').classList.add("navbar-item"); 
+        // document.getElementById('btn_game').classList.add("is-active"); 
 
-        console.log("createAccount clicked"); 
+
+        console.log("Game button clicked"); 
+    }); 
+
+    // Handles "Calculate Match!" button press
+    document.getElementById("btn_assessMatch").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        register_form.classList.add("form-hidden");
+        login_form.classList.add("form-hidden"); 
+        loveCalc_form.classList.remove("form-hidden"); 
+
+        // Change value of "score"
+        score += calcLove(name_1, name_2); // add the result of 
+     
+        console.log("Calculate match button clicked"); 
     }); 
 
 
@@ -155,58 +178,47 @@ register_form.addEventListener('submitCreateAccount', (e) => {
 // Create a user with POST
 
 
-var unirest = require("unirest");
-var name_1 = document.getElementById("name_1"); 
-var name_2 = document.getElementById("name_2"); 
-var guess = document.getElementById("guess"); 
-var score = document.getElementById("score"); 
+// // This JS file helps to assess the score for who gets 
+// window.addEventListener("beforeunload", "click", (e) => {
+// 	document.getElementById("assess_match").addEventListener("click", (e) => {
+//         e.preventDefault(); 
+//         console.log("assess_match clicked"); 
+
+// 		// calc love calculator val
+// 		var apiRes = calcLove(name_1, name_2); 
+
+// 		// find diff between input 
+// 		var diff = abs( document.getElementById("guess") - apiRes ); 
+
+//         score += ( 100 - diff );
 
 
-// This JS file helps to assess the score for who gets 
-window.addEventListener("beforeunload", "click", (e) => {
-	document.getElementById("assess_match").addEventListener("click", (e) => {
-        e.preventDefault(); 
-        console.log("assess_match clicked"); 
-
-		// calc love calculator val
-		var apiRes = calcLove(name_1, name_2); 
-
-		// find diff between input 
-		var diff = abs( document.getElementById("guess") - apiRes ); 
-
-        score += ( 100 - diff );
-
-
-    }); 
-}) 
+//     }); 
+// }) 
 	
 //         BREAK IN CODE: BEGINNING OF LOVECALC.JS GAME           //
 
 // For doing the chemistry calculations
-function calcLove(name1, name2) {
-	var req = unirest("GET", "https://love-calculator.p.rapidapi.com/getPercentage");
+function calcLove(namea, nameb) {
+    const options = {
+    method: 'GET',
+    url: 'https://love-calculator.p.rapidapi.com/getPercentage',
+    params: {fname: namea, sname: nameb},
+    headers: {
+        'x-rapidapi-key': '739b9df380msh1816be226e8fc1cp12c848jsn6d84e15d23d4',
+        'x-rapidapi-host': 'love-calculator.p.rapidapi.com'
+    }
+    };
 
-	req.query({
-		"fname": name1,
-		"sname": name2
-	});
-
-	req.headers({
-		"x-rapidapi-key": "739b9df380msh1816be226e8fc1cp12c848jsn6d84e15d23d4",
-		"x-rapidapi-host": "love-calculator.p.rapidapi.com",
-		"useQueryString": true
-	});
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+        return response.data.percentage; 
+    }).catch(function (error) {
+        console.error(error);
+    });
 
 
-	req.end(function (res) {
-		if (res.error) throw new Error(res.error);
 
-		console.log(res.body);
-		console.log(res.body.percentage);
-
-	});
-
-	return res.body.percentage; 
 
 	// Update the score to be the difference between the expected chemistry 
 	// and the chemistry that the user "guess"ed (input)
