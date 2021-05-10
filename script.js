@@ -130,13 +130,13 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
     }); 
 
 // Add listeners for loveCalc Game page
-    const name_1_obj = document.querySelector('name_1');  // input
-    const name_2_obj = document.querySelector('name_2');  // input
+    const name_1_obj = document.getElementById('name_1');  // input
+    const name_2_obj = document.getElementById('name_2');  // input
     const name_1_val = document.getElementById('name_1').value;  // log 
     const name_2_val = document.getElementById('name_2').value;  // log 
 
-    //name_1_obj.addEventListener.getAttribute('value'); 
-    //name_2_obj.addEventListener('name_2_obj', updateValue2); 
+    name_1_obj.addEventListener('name_1_obj', updateValue1);
+    name_2_obj.addEventListener('name_2_obj', updateValue2); 
 
     function updateValue1(e) {
         name_1_val.textContent = e.target.value; // this works
