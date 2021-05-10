@@ -25,10 +25,11 @@ const register_form = document.getElementById('createAccount')
 const loveCalc_form = document.getElementById('loveCalc')
 //var unirest = require("unirest"); // installed browserify for this to work AND unirest
 //import axios from "../node_modules/axios";
-var name_1 = document.getElementById("name_1"); 
-var name_2 = document.getElementById("name_2"); 
+const name_1 = document.getElementById("name_1"); 
+const name_2 = document.getElementById("name_2"); 
 var guess = document.getElementById("guess"); 
 var score = document.getElementById("score"); 
+var chemistryCalc = 0; 
 
 // Var(s) for errors
 const errorElement = document.getElementById('error')
@@ -80,11 +81,66 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.remove("form-hidden"); 
 
-        // Change value of "score"
-        score += calcLove(name_1, name_2); // add the result of 
+        console.log(name_1);
+        console.log(name_1_obj);
+        console.log(name_1_val); 
+        
+        
+        console.log(name_2);
+        console.log(name_2_obj);
+        console.log(name_2_val); 
+
+        // Change value of "score" with axios request from "Love Calculator"
+        const options = {
+            method: 'GET',
+            url: 'https://love-calculator.p.rapidapi.com/getPercentage',
+            
+
+
+            params: { fname: String(name_1), sname: String(name_2) },
+            headers: {
+                'x-rapidapi-key': '739b9df380msh1816be226e8fc1cp12c848jsn6d84e15d23d4',
+                'x-rapidapi-host': 'love-calculator.p.rapidapi.com'
+            }
+        };
+        
+        axios.request(options).then(function (response) {
+                console.log(response.data);
+                console.log(response.data.percentage);
+
+                chemistryCalc = response.data.percentage; 
+                score = 100 - chemistryCalc; // resetting score; initial test (1 round)
+                
+                console.log("newScore code was run and the  % calculated from loveCalc is:"); 
+                console.log(chemistryCalc); 
+
+        }).catch(function (error) {
+                console.error(error);
+        });
+
+
+
+        // Update message
+        //document.getElementById('loveCalc_message') = calcLove(name_1, name_2).result; 
      
         console.log("Calculate match button clicked"); 
     }); 
+
+// Add listeners for loveCalc Game page
+    const name_1_obj = document.querySelector('#name_1');  // input
+    const name_2_obj = document.querySelector('#name_2');  // input
+    const name_1_val = document.getElementById('#name_1').value;  // log
+    const name_2_val = document.getElementById('#name_2').value;  // log
+
+    name_1_obj.addEventListener('name_1_obj', updateValue1); 
+    name_2_obj.addEventListener('name_2_obj', updateValue2); 
+
+    function updateValue1(e) {
+        name_1_val.textContent = e.target.value; // 
+    }
+    function updateValue2(e) {
+        name_2_val.textContent = e.target.value;
+    }
 
 
 
@@ -175,27 +231,9 @@ register_form.addEventListener('submitCreateAccount', (e) => {
     
 })
 
-// Create a user with POST
+// Create a user with POST - TBD
 
 
-// // This JS file helps to assess the score for who gets 
-// window.addEventListener("beforeunload", "click", (e) => {
-// 	document.getElementById("assess_match").addEventListener("click", (e) => {
-//         e.preventDefault(); 
-//         console.log("assess_match clicked"); 
-
-// 		// calc love calculator val
-// 		var apiRes = calcLove(name_1, name_2); 
-
-// 		// find diff between input 
-// 		var diff = abs( document.getElementById("guess") - apiRes ); 
-
-//         score += ( 100 - diff );
-
-
-//     }); 
-// }) 
-	
 //         BREAK IN CODE: BEGINNING OF LOVECALC.JS GAME           //
 
 // For doing the chemistry calculations
@@ -203,7 +241,7 @@ function calcLove(namea, nameb) {
     const options = {
     method: 'GET',
     url: 'https://love-calculator.p.rapidapi.com/getPercentage',
-    params: {fname: namea, sname: nameb},
+    params: {fname: 'namea', sname: 'nameb'},
     headers: {
         'x-rapidapi-key': '739b9df380msh1816be226e8fc1cp12c848jsn6d84e15d23d4',
         'x-rapidapi-host': 'love-calculator.p.rapidapi.com'
@@ -213,6 +251,7 @@ function calcLove(namea, nameb) {
     axios.request(options).then(function (response) {
         console.log(response.data);
         console.log(response.data.percentage);
+        chemistryCalc = response.data.percentage; 
         return response.data.percentage; 
     }).catch(function (error) {
         console.error(error);
