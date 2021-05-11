@@ -7,6 +7,8 @@
     <title>Welcome to the ultimate game!</title>
     <script defer src="script.js"></script>
     <script src="node_modules/axios/dist/axios.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- <script data-main="script.js" src="package-lock.json/require.js"></script>  --> <!-- added this line to make require(unirest) work -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="supp.css">
@@ -182,7 +184,7 @@
                             <input id="name_2" name="name_2" type="string" value="chris" required> 
                         </div>
                         <div>
-                            <input id="guess" name="guess" type="text" placeholder="Guess 1-100 ~chemistry" required> 
+                            <input id="guess" name="guess" type="number" placeholder="Guess!" min="0" max="100" required> 
                         </div>
                         <div>
                             <button type="submit" id="btn_assessMatch">Calculate match!</button>  
@@ -205,8 +207,21 @@
                               </p>
                           </div>
 
+                          <p>
+
+                          </p>
+
+                          <p> 
+                            <div>
+                              <label type="text" id="feedback"></label>
+                            </div>
+                          </p>
+
                           <div>
                             <text id="loveCalc_message"></text> <!-- adds message about compatability -->
+                            
+
+
                           </div>
                       </p>
 

@@ -32,6 +32,11 @@ var score = document.getElementById("score");
 var chemistryCalc = 0; 
 var running_score = 0; 
 var round_num_out_of_five = 0; 
+// import $ from jQuery; 
+// $("#guess").attr({
+//     "max": 100, 
+//     "min": 0
+// }); 
 
 // Var(s) for errors
 const errorElement = document.getElementById('error')
@@ -126,14 +131,12 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
                 console.log(response.data);
                 console.log(response.data.percentage);
 
+                // set values for calculating score based on this round's input
                 const chemistryCalc = response.data.percentage; 
-                score_val = 100 - chemistryCalc; // resetting score; initial test (1 round)
-                // set current score to score val
-                    //document.getElementById('score').value.contentEditable = true; 
-
+                var difference = Math.abs( chemistryCalc - document.getElementById('guess').value); 
+                score_val = 100 - difference; 
                 console.log(score); 
                 console.log(score_val); 
-
                 console.log(document.getElementById('score').innerHTML); 
 
                 // if score is 150 within 5 rounds then you win!
@@ -146,6 +149,9 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
                     round_num_out_of_five++; 
                     document.getElementById('round_num').innerHTML = round_num_out_of_five;
                     score.text = score_val; // update the score 
+
+                    // providing feedback to game player about they score 
+                    document.getElementById('feedback').innerHTML = "Love Calculator's feedback on your match's potential chemistry: " + response.data.result; 
                 }
 
                 // if final round
@@ -160,6 +166,8 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
                         alert("I'm sorry :( You lost the chemistry guessing game this time because your score, " + running_score + ", was less than 150 in 5 rounds. Reload the page the play again! \n\nHappy match-making. :)")
                     }
                 }
+
+
 
                 console.log("newScore code was run and the  % calculated from loveCalc is:"); 
                 console.log(chemistryCalc); 
