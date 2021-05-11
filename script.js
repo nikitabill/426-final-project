@@ -31,7 +31,7 @@ var guess = document.getElementById("guess");
 var score = document.getElementById("score"); 
 var chemistryCalc = 0; 
 var running_score = 0; 
-var round_num_out_of_five = 1; 
+var round_num_out_of_five = 0; 
 
 // Var(s) for errors
 const errorElement = document.getElementById('error')
