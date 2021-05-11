@@ -133,8 +133,18 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
 
                 // set values for calculating score based on this round's input
                 const chemistryCalc = response.data.percentage; 
-                var difference = Math.abs( chemistryCalc - document.getElementById('guess').value); 
-                score_val = 100 - difference; 
+                var difference = chemistryCalc - document.getElementById('guess').value; 
+                // feedback from Nikita
+                if (difference > 0) {
+                    document.getElementById('nikita_feedback').innerHTML = "Nikita's feedback on your guess: You're not giving these two enough credit, try higher next time!"; 
+                } if (difference < 0) {
+                    document.getElementById('nikita_feedback').innerHTML = "Nikita's feedback on your guess: Sheeeesh! Please don't be so hopeful. These folks may not have as much chemistry as you'd think..."; 
+                } if ((difference == 0) && !(guess == 0)) {
+                    document.getElementById('nikita_feedback').innerHTML = "Nikita's feedback on your guess: Nice! Perfect guess. What a great match-maker. :)"
+                }
+
+
+                score_val = 100 - Math.abs(difference); 
                 console.log(score); 
                 console.log(score_val); 
                 console.log(document.getElementById('score').innerHTML); 
@@ -157,13 +167,12 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
                 // if final round
                 if (round_num_out_of_five == 5) {
                     // if you won the game (score 150), alert
-                    if ( running_score => 150 ) {
-                        alert("Congrats! You won because your score, " + running_score + ", is greater than 150 after 5 rounds!\n\nYou can reload this page to play again! :)"); 
+                    if ( running_score => 426 ) {
+                        alert("Congrats! You won because your score, " + running_score + ", is greater than 426 after 5 rounds!\n\nYou can reload this page to play again! :)"); 
                     }
-                
                     // if you lost, alert
-                    if ( running_score < 150 ) {
-                        alert("I'm sorry :( You lost the chemistry guessing game this time because your score, " + running_score + ", was less than 150 in 5 rounds. Reload the page the play again! \n\nHappy match-making. :)")
+                    if ( running_score < 426 ) {
+                        alert("I'm sorry :( You lost the chemistry guessing game this time because your score, " + running_score + ", was less than 426 in 5 rounds. Reload the page the play again! \n\nHappy match-making. :)")
                     }
                 }
 
