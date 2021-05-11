@@ -30,6 +30,8 @@ const name_2 = document.getElementById("name_2");
 var guess = document.getElementById("guess"); 
 var score = document.getElementById("score"); 
 var chemistryCalc = 0; 
+var running_score = 0; 
+var round_num_out_of_five = 1; 
 
 // Var(s) for errors
 const errorElement = document.getElementById('error')
@@ -128,17 +130,36 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
                 score_val = 100 - chemistryCalc; // resetting score; initial test (1 round)
                 // set current score to score val
                     //document.getElementById('score').value.contentEditable = true; 
-                document.getElementById('score_this_round').innerHTML = score_val; 
-                document.getElementById('score').innerHTML = score_val + document.getElementById('score').innerHTML; 
 
                 console.log(score); 
                 console.log(score_val); 
 
                 console.log(document.getElementById('score').innerHTML); 
 
+                // if score is 150 within 5 rounds then you win!
+                // if not final round
+                if (round_num_out_of_five < 5) {  
+                    document.getElementById('score_this_round').innerHTML = score_val; 
+                    running_score += score_val; 
+                    document.getElementById('score').innerHTML = running_score; 
+    
+                    round_num_out_of_five++; 
+                    document.getElementById('round_num').innerHTML = round_num_out_of_five;
+                    score.text = score_val; // update the score 
+                }
 
-                // update the score
-                score.text = score_val; 
+                // if final round
+                if (round_num_out_of_five == 5) {
+                    // if you won the game (score 150), alert
+                    if ( running_score => 150 ) {
+                        alert("Congrats! You won because your score, " + running_score + ", is greater than 150 after 5 rounds!\n\nYou can reload this page to play again! :)"); 
+                    }
+                
+                    // if you lost, alert
+                    if ( running_score < 150 ) {
+                        alert("I'm sorry :( You lost the chemistry guessing game this time because your score, " + running_score + ", was less than 150 in 5 rounds. Reload the page the play again! \n\nHappy match-making. :)")
+                    }
+                }
 
                 console.log("newScore code was run and the  % calculated from loveCalc is:"); 
                 console.log(chemistryCalc); 
