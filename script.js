@@ -23,8 +23,6 @@ const register_form = document.getElementById('createAccount')
 
 // Vars needed for loveCalc
 const loveCalc_form = document.getElementById('loveCalc')
-//var unirest = require("unirest"); // installed browserify for this to work AND unirest
-//import axios from "../node_modules/axios";
 const name_1 = document.getElementById("name_1"); 
 const name_2 = document.getElementById("name_2"); 
 var guess = document.getElementById("guess"); 
@@ -32,11 +30,10 @@ var score = document.getElementById("score");
 var chemistryCalc = 0; 
 var running_score = 0; 
 var round_num_out_of_five = 0; 
-// import $ from jQuery; 
-// $("#guess").attr({
-//     "max": 100, 
-//     "min": 0
-// }); 
+
+// Vars needed for discovering dates (Boring API)
+const date_form = document.getElementById('boring')
+
 
 // Var(s) for errors
 const errorElement = document.getElementById('error')
@@ -86,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         e.preventDefault(); 
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
+
         loveCalc_form.classList.remove("form-hidden"); 
 
         // Add listeners for loveCalc Game page
@@ -194,20 +192,21 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         console.log("Calculate match button clicked"); 
     }); 
 
-
-
-// React function will help us reset our score one the Game page
-function Game() {
-    const [game_score, setScore] = useState(0); 
-
-    function incrementScore() {
-        setScore(prevScore => prevScore + score_val) // add the most recent score to the 
+    // Boring API page: discovering activities to do with your significant other
+    document.getElementById("btn_assessMatch").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        register_form.classList.add("form-hidden");
+        login_form.classList.add("form-hidden"); 
+        loveCalc_form.classList.add("form-hidden"); 
+        date_form.classList.remove("form-hidden"); 
+    
+    
+    
     }
 
-    
-}
-
 })
+
+
 
 
 
