@@ -86,10 +86,8 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         const name_2_obj = document.getElementById('name_2');  // input
         const name_1_val = document.getElementById('name_1').value;  // log 
         const name_2_val = document.getElementById('name_2').value;  // log 
-
         name_1_obj.addEventListener("click", updateValue1);
         name_2_obj.addEventListener("click", updateValue2); 
-
         function updateValue1(e) {
             name_1_val.textContent = e.target.value; // this works
             console.log(name_1_val);
@@ -99,18 +97,11 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
             name_2_val.textContent = e.target.value; // this works
             console.log(name_2_val);
             console.log('name_2_val reached');
-
         }
 
-        console.log(name_1);
-        console.log(name_1_obj);
-        console.log(name_1_val); 
-        
-        
-        console.log(name_2);
-        console.log(name_2_obj);
-        console.log(name_2_val); 
-
+        // Change the score based on the 
+        const score_val = score.value;  
+       
 
         // Change value of "score" with axios request from "Love Calculator"
         const options = {
@@ -130,11 +121,11 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
                 console.log(response.data);
                 console.log(response.data.percentage);
 
-                chemistryCalc = response.data.percentage; 
-                score = chemistryCalc - chemistryCalc; // resetting score; initial test (1 round)
+                const chemistryCalc = response.data.percentage; 
+                score_val = 100 - chemistryCalc; // resetting score; initial test (1 round)
+
                 console.log(score); 
-
-
+                console.log(score_val); 
 
                 console.log("newScore code was run and the  % calculated from loveCalc is:"); 
                 console.log(chemistryCalc); 
@@ -142,17 +133,8 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         }).catch(function (error) {
                 console.error(error);
         });
-
-
-
-        // Update message
-        //document.getElementById('loveCalc_message') = calcLove(name_1, name_2).result; 
      
         console.log("Calculate match button clicked"); 
-
- 
-
-
     }); 
 
 
