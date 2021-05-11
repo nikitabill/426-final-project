@@ -81,6 +81,27 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.remove("form-hidden"); 
 
+        // Add listeners for loveCalc Game page
+        const name_1_obj = document.getElementById('name_1');  // input
+        const name_2_obj = document.getElementById('name_2');  // input
+        const name_1_val = document.getElementById('name_1').value;  // log 
+        const name_2_val = document.getElementById('name_2').value;  // log 
+
+        name_1_obj.addEventListener("click", updateValue1);
+        name_2_obj.addEventListener("click", updateValue2); 
+
+        function updateValue1(e) {
+            name_1_val.textContent = e.target.value; // this works
+            console.log(name_1_val);
+            console.log('name_1_val reached');
+        }
+        function updateValue2(e) {
+            name_2_val.textContent = e.target.value; // this works
+            console.log(name_2_val);
+            console.log('name_2_val reached');
+
+        }
+
         console.log(name_1);
         console.log(name_1_obj);
         console.log(name_1_val); 
@@ -90,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         console.log(name_2_obj);
         console.log(name_2_val); 
 
+
         // Change value of "score" with axios request from "Love Calculator"
         const options = {
             method: 'GET',
@@ -97,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
             
 
 
-            params: { fname: String(name_1), sname: String(name_2) },
+            params: { fname: name_1_val, sname: name_2_val },
             headers: {
                 'x-rapidapi-key': '739b9df380msh1816be226e8fc1cp12c848jsn6d84e15d23d4',
                 'x-rapidapi-host': 'love-calculator.p.rapidapi.com'
@@ -127,23 +149,13 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         //document.getElementById('loveCalc_message') = calcLove(name_1, name_2).result; 
      
         console.log("Calculate match button clicked"); 
+
+ 
+
+
     }); 
 
-// Add listeners for loveCalc Game page
-    const name_1_obj = document.getElementById('name_1');  // input
-    const name_2_obj = document.getElementById('name_2');  // input
-    const name_1_val = document.getElementById('name_1').value;  // log 
-    const name_2_val = document.getElementById('name_2').value;  // log 
 
-    name_1_obj.addEventListener('name_1_obj', updateValue1);
-    name_2_obj.addEventListener('name_2_obj', updateValue2); 
-
-    function updateValue1(e) {
-        name_1_val.textContent = e.target.value; // this works
-    }
-    function updateValue2(e) {
-        name_2_val.textContent = e.target.value; // this works
-    }
 
 
 
