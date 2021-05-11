@@ -99,8 +99,11 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
             console.log('name_2_val reached');
         }
 
+        
+
+
         // Change the score based on the 
-        const score_val = score.value;  
+        var score_val = score.value;  
        
 
         // Change value of "score" with axios request from "Love Calculator"
@@ -123,9 +126,19 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
 
                 const chemistryCalc = response.data.percentage; 
                 score_val = 100 - chemistryCalc; // resetting score; initial test (1 round)
+                // set current score to score val
+                    //document.getElementById('score').value.contentEditable = true; 
+                document.getElementById('score_this_round').innerHTML = score_val; 
+                document.getElementById('score').innerHTML = score_val + document.getElementById('score').innerHTML; 
 
                 console.log(score); 
                 console.log(score_val); 
+
+                console.log(document.getElementById('score').innerHTML); 
+
+
+                // update the score
+                score.text = score_val; 
 
                 console.log("newScore code was run and the  % calculated from loveCalc is:"); 
                 console.log(chemistryCalc); 
@@ -134,14 +147,31 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
                 console.error(error);
         });
      
+        // set val for score
+        document.getElementById('score').text = score_val; 
+
+
+
+
         console.log("Calculate match button clicked"); 
     }); 
 
 
 
+// React function will help us reset our score one the Game page
+function Game() {
+    const [game_score, setScore] = useState(0); 
 
+    function incrementScore() {
+        setScore(prevScore => prevScore + score_val) // add the most recent score to the 
+    }
+
+    
+}
 
 })
+
+
 
 document.addEventListener("DOMContentLoaded", () => { // our default page will be the register user page
     
