@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
 
     // Helper function for about Bored API listener  
     async function getBoredData() {
-        console.log("inside asynz function that will handle axios request");
+        console.log("inside async function that will handle axios request");
 
         const res = await axios({ 
             method: 'get', 
@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
     }; 
 
     // Cocktail API (rip I paid $2 for this)
-    document.getElementById("cocktail").addEventListener("click", (e) => {
+    document.getElementById("btn_cocktail").addEventListener("click", (e) => {
         e.preventDefault(); 
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
 
         console.log(res); 
 
-        document.getElementById('cocktail_info').innerHTML = res.drinks['0']['strDrink'];
+        document.getElementById('cocktail_info').innerHTML = res.data.drinks['0']['strDrink'];
         console.log("cocktail data is,,,"); 
         console.log(document.getElementById('cocktail_info').innerHTML); 
         
