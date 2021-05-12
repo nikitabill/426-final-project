@@ -6,6 +6,8 @@
 // const app = express()
 // const mongoose = require('mongoose')
 
+//import axios from "axios"
+
 // Connecting my database to this file
 // mongoose.connect('https://github.com/nikitabill/426-final-project/blob/main/data.js', { useNewUrlParser : true } )
 // const db = mongoose.connectiondb.on('open', () => console.log('Connected to database!'))
@@ -32,8 +34,8 @@ var running_score = 0;
 var round_num_out_of_five = 0; 
 
 // Vars needed for discovering dates (Boring API)
-const date_form = document.getElementById('boring')
-
+const date_form = document.getElementById('boring'); 
+const bored_data = document.getElementById('date_info')
 
 // Var(s) for errors
 const errorElement = document.getElementById('error')
@@ -62,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.remove("form-hidden");
         login_form.classList.add("form-hidden"); 
         date_form.classList.add("form-hidden"); 
-
 
         console.log("createAccount clicked"); 
     }); 
@@ -107,9 +108,6 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
             console.log(name_2_val);
             console.log('name_2_val reached');
         }
-
-        
-
 
         // Change the score based on the 
         var score_val = score.value;  
@@ -199,15 +197,31 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.add("form-hidden"); 
-        date_form.classList.remove("form-hidden"); 
-    
-        // add 
-    
+        date_form.classList.remove("form-hidden");
+
+        // Axios API function grabs output from Bored API
+        async function grabBoredData() {
+            const res = await axios({
+                method: 'get', 
+                url: 'http://www.boredapi.com/api/activity?type=recreational'
+            }); 
+
+            console.log("res reached in axios function!"); 
+            console.log(res); 
+
+            document.getElementById('bored_info').innerHTML = res.data['activity'];
+            console.log("bored data is,,,"); 
+            console.log(document.getElementById('bored_info').innerHTML); 
+        }
+
+        console.log("Find date button clicked"); 
     
     }); 
 
-})
+    
 
+
+})
 
 
 
