@@ -198,25 +198,38 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.add("form-hidden"); 
         date_form.classList.remove("form-hidden");
+    }); 
+
+    
+    document.getElementById("btn_findDate").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        register_form.classList.add("form-hidden");
+        login_form.classList.add("form-hidden"); 
+        loveCalc_form.classList.add("form-hidden"); 
+        date_form.classList.remove("form-hidden");
 
         // Axios API function grabs output from Bored API
-        async function grabBoredData() {
-            const res = await axios({
-                method: 'get', 
-                url: 'http://www.boredapi.com/api/activity?type=recreational'
-            }); 
-
-            console.log("res reached in axios function!"); 
-            console.log(res); 
-
-            document.getElementById('bored_info').innerHTML = res.data['activity'];
-            console.log("bored data is,,,"); 
-            console.log(document.getElementById('bored_info').innerHTML); 
-        }
+        getBoredData(); 
 
         console.log("Find date button clicked"); 
     
     }); 
+
+    async function getBoredData() {
+        console.log("inside asynz function that will handle axios request");
+
+        const res = await axios({ 
+            method: 'get', 
+            url: 'http://www.boredapi.com/api/activity?type=recreational'
+        }); 
+
+        console.log("res reached in axios function!"); 
+        console.log(res); 
+
+        document.getElementById('date_info').innerHTML = res.data['activity'];
+        console.log("bored data is,,,"); 
+        console.log(document.getElementById('date_info').innerHTML); 
+    }; 
 
     
 
