@@ -1,17 +1,4 @@
 // Importing necessary JS libraries like React
-//import React, { useState } from 'react'; 
-//const { authUser } = require('./authUser').default
-//const { users } = require('./data')
-// const express = require('express')
-// const app = express()
-// const mongoose = require('mongoose')
-
-//import axios from "axios"
-
-// Connecting my database to this file
-// mongoose.connect('https://github.com/nikitabill/426-final-project/blob/main/data.js', { useNewUrlParser : true } )
-// const db = mongoose.connectiondb.on('open', () => console.log('Connected to database!'))
-// app.use(express.json())
 
 // Vars needed for user login form
 const name = document.getElementById('name')
