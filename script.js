@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         login_form.classList.add("form-hidden"); 
         register_form.classList.remove("form-hidden");
         date_form.classList.add("form-hidden"); 
+        cocktail_form.classList.add("form-hidden");
 
         console.log("login clicked"); 
     }); 
@@ -68,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         e.preventDefault(); 
         register_form.classList.remove("form-hidden");
         login_form.classList.add("form-hidden"); 
+        cocktail_form.classList.add("form-hidden");
         date_form.classList.add("form-hidden"); 
 
         console.log("createAccount clicked"); 
@@ -79,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.remove("form-hidden"); 
+        cocktail_form.classList.add("form-hidden");
         date_form.classList.add("form-hidden"); 
         // document.getElementById('btn_loginOnBanner').classList.remove("navbar-item is-active"); 
         // document.getElementById('btn_loginOnBanner').classList.add("navbar-item"); 
@@ -94,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.remove("form-hidden"); 
+        cocktail_form.classList.add("form-hidden");
         date_form.classList.add("form-hidden"); 
 
         // Add listeners for loveCalc Game page
@@ -202,6 +206,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.add("form-hidden"); 
+        cocktail_form.classList.add("form-hidden");
         date_form.classList.remove("form-hidden");
     }); 
 
@@ -211,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.add("form-hidden"); 
+        cocktail_form.classList.add("form-hidden");
         date_form.classList.remove("form-hidden");
 
         // Axios API function grabs output from Bored API
@@ -256,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         loveCalc_form.classList.add("form-hidden"); 
         date_form.classList.add("form-hidden");
         cocktail_form.classList.remove("form-hidden");
+
 
         // Axios API function grabs output from Cocktail API
         getTopCocktail(); 
