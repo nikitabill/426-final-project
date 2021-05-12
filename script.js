@@ -37,6 +37,11 @@ var round_num_out_of_five = 0;
 const date_form = document.getElementById('boring'); 
 const bored_data = document.getElementById('date_info')
 
+// Vars for Cocktail API
+const cocktail_form = document.getElementById('cocktail'); 
+const cocktail_data = document.getElementById('boring'); 
+
+
 // Var(s) for errors
 const errorElement = document.getElementById('error')
 
@@ -191,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         console.log("Calculate match button clicked"); 
     }); 
 
-    // Boring API page: discovering activities to do with your significant other
+    // Bored API page: discovering activities to do with your significant other
     document.getElementById("btn_dates").addEventListener("click", (e) => {
         e.preventDefault(); 
         register_form.classList.add("form-hidden");
@@ -215,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
     
     }); 
 
+    // Helper function for about Bored API listener  
     async function getBoredData() {
         console.log("inside asynz function that will handle axios request");
 
@@ -223,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
             url: 'http://www.boredapi.com/api/activity?type=recreational'
         }); 
 
-        console.log("res reached in axios function!"); 
+        console.log("res reached in date axios function!"); 
         console.log(res); 
 
         document.getElementById('date_info').innerHTML = res.data['activity'];
@@ -231,7 +237,56 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         console.log(document.getElementById('date_info').innerHTML); 
     }; 
 
+    // Cocktail API (rip I paid $2 for this)
+    document.getElementById("cocktail").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        register_form.classList.add("form-hidden");
+        login_form.classList.add("form-hidden"); 
+        loveCalc_form.classList.add("form-hidden"); 
+        date_form.classList.add("form-hidden");
+        cocktail_form.classList.remove("form-hidden");
+
+        console.log("Find cocktail button clicked"); 
+    }); 
+
+    document.getElementById("btn_findCocktail").addEventListener("click", (e) => {
+        e.preventDefault(); 
+        register_form.classList.add("form-hidden");
+        login_form.classList.add("form-hidden"); 
+        loveCalc_form.classList.add("form-hidden"); 
+        date_form.classList.add("form-hidden");
+        cocktail_form.classList.remove("form-hidden");
+
+        // Axios API function grabs output from Cocktail API
+        getTopCocktail(); 
+
+        console.log("Find date button clicked"); 
     
+    }); 
+
+    // Helper function for above cocktail api
+    async function getTopCocktail() {
+        var res = await axios({
+        method: 'GET',
+        url: 'https://the-cocktail-db.p.rapidapi.com/randomselection.php',
+        headers: {
+            'x-rapidapi-key': '739b9df380msh1816be226e8fc1cp12c848jsn6d84e15d23d4',
+            'x-rapidapi-host': 'the-cocktail-db.p.rapidapi.com'
+        }
+        });
+
+        console.log(res); 
+
+        document.getElementById('cocktail_info').innerHTML = res.drinks['0']['strDrink'];
+        console.log("cocktail data is,,,"); 
+        console.log(document.getElementById('cocktail_info').innerHTML); 
+        
+        
+
+        console.log("res reached in cocktail axios function!"); 
+
+
+    }
 
 
 })

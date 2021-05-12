@@ -52,6 +52,9 @@
                     <a id="btn_dates" class="navbar-item" href="index.html"> <!-- Discover activities to do with your new significant other here once you've found your perfect match -->
                       Dates
                     </a>
+                    <a id="btn_cocktail" class="navbar-item" href="index.html"> <!-- Discover activities to do with your new significant other here once you've found your perfect match -->
+                      Mixing It Up
+                    </a>
 
 
 
@@ -274,7 +277,7 @@
                           <div>
                             <p>
                               <label type="text">Some info about what you should do with your new boo:</label>
-                              <text id="date_info" type="text" value=""></text>  <!-- add helper function on loveCalc.js -->
+                              <strong><text id="date_info" type="text" value=""></text></strong>  <!-- add helper function on loveCalc.js -->
                           </p>
 
                           <p>
@@ -288,6 +291,53 @@
                 </section>
             </form>
         </div>
+
+      <!-- COCKTAIL API: NOW LET THINGS GET POPPING -->
+      <div>
+        <form id="cocktail" class="form-hidden" action="/" method="GET">  
+            <section class="section is-medium">
+                <div class="container has-text-centered">
+            
+                    <p>
+                        <div>
+                            <h1 class="title is-2 is-spaced">Now let's get popping!</h1>
+                        </div>
+                    </p>
+
+                    <p>
+                      <div>
+                        <h5 class="subtitle">Ok, so you've warmed up with a tame date or two. Now, let's shake things up! (Or have them stirred?)</h5>
+                      </div>  
+                      <label type="text">Press the button below to find a cocktail to try to make with your boo... for a ~crazy night in~</label>
+                    </p>
+
+                    <p>
+
+                    </p>
+
+                    <div>
+                        <button type="submit" id="btn_findCocktail">Click to find a date idea!</button>  
+                    </div>
+
+                    <p class="has-text-weight-light">
+                      <div>
+                        <p>
+                          <label type="text">Some info about what you should do with your new boo:</label>
+                          <strong><text id="cocktail_info" type="text" value=""></text></strong>  <!-- add helper function on loveCalc.js -->
+                      </p>
+
+                      <p>
+                        <label type="text">~</label>
+                      </p>
+                      </div>
+
+                  </p>
+
+          
+
+            </section>
+        </form>
+    </div>
 
 
 
