@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         e.preventDefault(); 
         login_form.classList.add("form-hidden"); 
         register_form.classList.remove("form-hidden");
+        date_form.classList.add("form-hidden"); 
 
         console.log("login clicked"); 
     }); 
@@ -60,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         e.preventDefault(); 
         register_form.classList.remove("form-hidden");
         login_form.classList.add("form-hidden"); 
+        date_form.classList.add("form-hidden"); 
+
 
         console.log("createAccount clicked"); 
     }); 
@@ -70,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.remove("form-hidden"); 
+        date_form.classList.add("form-hidden"); 
         // document.getElementById('btn_loginOnBanner').classList.remove("navbar-item is-active"); 
         // document.getElementById('btn_loginOnBanner').classList.add("navbar-item"); 
         // document.getElementById('btn_game').classList.add("is-active"); 
@@ -83,8 +87,8 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         e.preventDefault(); 
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
-
         loveCalc_form.classList.remove("form-hidden"); 
+        date_form.classList.add("form-hidden"); 
 
         // Add listeners for loveCalc Game page
         const name_1_obj = document.getElementById('name_1');  // input
@@ -186,23 +190,21 @@ document.addEventListener("DOMContentLoaded", () => { // our default page will b
         // set val for score
         document.getElementById('score').text = score_val; 
 
-
-
-
         console.log("Calculate match button clicked"); 
     }); 
 
     // Boring API page: discovering activities to do with your significant other
-    document.getElementById("btn_assessMatch").addEventListener("click", (e) => {
+    document.getElementById("btn_dates").addEventListener("click", (e) => {
         e.preventDefault(); 
         register_form.classList.add("form-hidden");
         login_form.classList.add("form-hidden"); 
         loveCalc_form.classList.add("form-hidden"); 
         date_form.classList.remove("form-hidden"); 
     
+        // add 
     
     
-    }
+    }); 
 
 })
 
