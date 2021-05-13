@@ -18,7 +18,8 @@
     "netlify-identity-widget": "^1.9.1",
     "react": "^17.0.2",
     "requirejs": "^2.3.6",
-    "unirest": "^0.6.0"
+    "unirest": "^0.6.0",
+    "uri": "^0.1.0"
   },
   "devDependencies": {
     "dotenv": "^9.0.0",
