@@ -8,6 +8,11 @@
     <script defer src="script.js"></script>
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- adding requirements for google sign-in -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="nlbillman.apps.googleusercontent.com">
+    <meta name="google-site-verification" content="RlhqPX05aQiGdeUJ4B3szjNwg0kNa7v_t81_-bJrnJA" />
+
 
     <!-- <script data-main="script.js" src="package-lock.json/require.js"></script>  --> <!-- added this line to make require(unirest) work -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
@@ -63,7 +68,15 @@
                     </a>
                 </span>
 
-
+                <a href="#" onclick="signOut();">Sign out</a>
+                <script>
+                  function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(function () {
+                      console.log('User signed out.');
+                    });
+                  }
+                </script>
 
 
                     <span class="navbar-item">
@@ -110,7 +123,8 @@
 
 
                             <div>
-                            <button type="submit">Continue</button>  <!-- add getInfo() helper function here? -->
+                              <div class="g-signin2" id="google" data-onsuccess="onSignIn">
+                              <!-- <button type="submit">Continue</button> </div>--> <!-- add getInfo() helper function here? -->
                             </div>
 
                             <p class="has-text-weight-light">
